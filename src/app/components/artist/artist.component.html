@@ -1,0 +1,69 @@
+<app-laoding *ngIf="loading"></app-laoding>
+<div *ngIf="!loading">
+    <div class="row">
+        <div class="col-2">
+            <img [src]="artist.images | noimage" [alt]="artist.name" class="img-thumbnail img-circle">
+        </div>
+        <div class="col">
+            <h3>
+                {{ artist.name }}
+            </h3>
+            <p>
+                <a [href]="artist.external_urls.spotify">
+                    Artist's spotify profile
+                </a>
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <button routerLink="/search" class="btn btn-outline-danger">
+                Back
+            </button>
+        </div>
+    </div>
+    <div class="row m-5">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Album
+                        </th>
+                        <th>
+                            Track name
+                        </th>
+                        <th>
+                            Album name
+                        </th>
+                        <th>
+                            Duration
+                        </th>
+                        <th>
+                            Preview
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let track of topTracks">
+                        <td>
+                            <img [src]="track.album.images | noimage:false" [alt]="track.album.name">
+                        </td>
+                        <td>
+                            <a [href]="track.external_urls.spotify" target="_blank" rel="noopener noreferrer">
+                                {{ track.name }}
+                            </a>
+                        </td>
+                        <td>
+                            {{track.album.name}}
+                        </td>
+                        <td>
+                            {{ track.duration_ms | duration }}
+                        </td>
+                        <td>
+                            <iframe [src]="track.id | trackPreview" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"> </iframe>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
