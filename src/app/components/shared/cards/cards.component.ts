@@ -15,7 +15,7 @@ export class CardsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  seeArtist(item: any) {
+  showArtist(item: any) {
     let artistId;
     if (item.type === 'artist') {
       artistId = item.id;
